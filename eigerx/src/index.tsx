@@ -5,13 +5,13 @@ import './index.css';
 import App from './components/app/App';
 
 function AppRender() {
-    return (
-        <React.StrictMode>
-                <BrowserRouter>
-                    <App />
-                </BrowserRouter>
-        </React.StrictMode>
-    )
+  return (
+    <React.StrictMode>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </React.StrictMode>
+  );
 }
 
 const rootElement = document.getElementById('root');

@@ -1,5 +1,5 @@
-import React from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import React from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
 
 interface IProtectedRoot {
   children: JSX.Element;
@@ -7,7 +7,7 @@ interface IProtectedRoot {
 }
 function ProtectedRoute({
   children,
-  redirectPath = "/",
+  redirectPath = '/'
 }: IProtectedRoot): JSX.Element {
   const user = localStorage.getItem('email');
   const location = useLocation();
