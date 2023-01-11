@@ -7,7 +7,7 @@ interface IProtectedRoot {
 }
 function ProtectedRoute({
   children,
-  redirectPath = "/login",
+  redirectPath = "/",
 }: IProtectedRoot): JSX.Element {
   const user = localStorage.getItem('email');
   const location = useLocation();

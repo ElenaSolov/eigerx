@@ -1,12 +1,16 @@
 import Form from "../components/form/form";
 import pagesStyles from './pages.module.css';
 
-const AuthPage = () => {
+interface IAuthPageProps {
+    user: string | null;
+}
+const AuthPage = ({user} : IAuthPageProps) => {
 
-  return (
+    return (
       <main className={pagesStyles.main}>
-        <h1>Please log in</h1>
-       <Form />
+        <h1>Log In Page</h1>
+          {user? <h2>{`Welcome back ${user}`}</h2>
+          : <Form />}
       </main>
   );
 };
