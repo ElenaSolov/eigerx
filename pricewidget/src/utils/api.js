@@ -1,6 +1,8 @@
-import { successfulResponse } from "./constants";
+import { successfulResponse, failedResponse } from "./constants";
 export const getPrices = () => {
   return Promise.resolve(successfulResponse);
 };
 
-console.log(getPrices());
+export const getPricesFail = () => {
+  return Promise.resolve(failedResponse);
+};

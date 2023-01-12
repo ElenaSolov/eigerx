@@ -1,17 +1,29 @@
 import React, { useState, useEffect } from "react";
 import priceWidgetStyles from "./priceWidget.module.css";
 import { initialMessage } from "../../utils/constants";
-import { getPrices } from "../../utils/api";
+import { getPrices, getPricesFail } from "../../utils/api";
 
 const PriceWidget = () => {
   const [data, setData] = useState(null);
   const [auto, setAuto] = useState(false);
+  const [error, setError] = useState("");
 
   const getData = () => {
+    setError("");
     console.log("Get request sent"); //this is left for testing purposes
     getPrices()
       .then((res) => setData(res.result))
       .catch((err) => console.log(err)); //should be more than console.log, of course
+  };
+
+  const getFailedData = () => {
+    setError("");
+    getPricesFail()
+      .then((res) => {
+        setError(res.result);
+        setData(null);
+      })
+      .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -32,7 +44,9 @@ const PriceWidget = () => {
 
   return (
     <section>
-      {data ? (
+      {error ? (
+        <p className={priceWidgetStyles.text}>{error}</p>
+      ) : data ? (
         <ul className={priceWidgetStyles.list}>
           <li className={priceWidgetStyles.item}>Asset</li>
           <li className={priceWidgetStyles.item}>Price</li>
@@ -59,6 +73,12 @@ const PriceWidget = () => {
             onChange={handleChange}
           />
         </label>
+        <button
+          className={priceWidgetStyles.refreshBtn}
+          onClick={getFailedData} //added to test failed request
+        >
+          Error
+        </button>
       </div>
     </section>
   );
